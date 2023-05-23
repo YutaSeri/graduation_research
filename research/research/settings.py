@@ -78,11 +78,12 @@ WSGI_APPLICATION = 'research.wsgi.application'
 
 DATABASES = {
     'default': {
-
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'graduation_research',
-        'USER': 'root',  
+        'NAME': 'disaster',
+        'USER': 'seriyuta',  
         'PASSWORD': 'Seri1216', 
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
