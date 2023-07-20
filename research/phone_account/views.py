@@ -52,6 +52,7 @@ def login_view(request):
 @login_required
 def logout_view(request):
     logout(request)
+<<<<<<< HEAD
 
     return render(request, 'logout.html')
 
@@ -62,3 +63,15 @@ def user_detail_view(request):
         'user': request.user  # request.user はログインしているユーザーオブジェクトを表します
     }
     return render(request, 'user_detail.html',context)
+=======
+    return render(request, 'phone_account/logout.html')
+
+@login_required
+def initial_view(request):
+    user = request.user
+    return render(request, 'phone_account/initial.html',{'user': user})
+
+@login_required
+def test_view(request):
+    return render(request, 'phone_account/test.html')
+>>>>>>> 8654a54 (ノートPC（名前表示）)

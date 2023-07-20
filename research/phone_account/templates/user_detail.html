@@ -1,6 +1,11 @@
 {% load static %}
 {% if user.is_authenticated %}
+<<<<<<< HEAD:research/phone_account/templates/user_detail.html
     <p>{{ user.username }}さん</p>
+=======
+    <p>{{ user.username }}さん。</p>
+    <!-- 他の属性にアクセスするためのコードを追加 -->
+>>>>>>> 8654a54 (ノートPC（名前表示）):research/phone_account/templates/phone_account/initial.html
 {% endif %}
 <!DOCTYPE html>
 <html>
@@ -14,8 +19,12 @@
     <ul class="circle-list">
         
         <li>
+<<<<<<< HEAD:research/phone_account/templates/user_detail.html
             
             <a href="{% url 'support:supplies' %}"><button class="circle">物資の要請</button></a>
+=======
+            <a href="{% url 'test'%}"><button class="circle">物資の要請</button></a>
+>>>>>>> 8654a54 (ノートPC（名前表示）):research/phone_account/templates/phone_account/initial.html
             <button class="circle">その他の要望を申請</button>
         </li>
         <li>

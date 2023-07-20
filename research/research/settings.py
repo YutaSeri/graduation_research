@@ -39,7 +39,7 @@ from .settings_local import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["192.168.2.102","127.0.0.1"]
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/phone_account/users/'
@@ -97,8 +97,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'disaster',
-        'USER': 'seriyuta',  
-        'PASSWORD': 'Seri1216', 
+        'USER': 'seri',  
+        'PASSWORD': 'seri1216', 
         'HOST': 'localhost',
         'PORT': '3306',
     }
