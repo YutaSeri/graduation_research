@@ -10,9 +10,10 @@
     <h1>新規登録画面</h1>
     <div class="reg">
     <table class="reg_form">
-    <form action="{% url 'signup' %}" method="post">
+    <form action="{% url 'signup'%}" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    <p class="form-field">{{ form.as_p }}</p>
+    
     <p><input type="submit" value="登録"></p>
     <p><a href="{% url 'login'%}">ログイン</a></p>
     </form>

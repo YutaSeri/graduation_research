@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from .forms import SignupForm, LoginForm
 from django.contrib.auth import login,logout
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 def signup_view(request):
     if request.method == 'POST':
@@ -9,7 +11,7 @@ def signup_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('/phone_account/initial/')
+            return redirect('user_detail.html/')
 
     else:
         form = SignupForm()
@@ -18,7 +20,7 @@ def signup_view(request):
         'form': form
     }
 
-    return render(request, 'phone_account/signup.html', param)
+    return render(request, 'signup.html', param)
 
 def login_view(request):
     if request.method == 'POST':
@@ -31,7 +33,7 @@ def login_view(request):
             if user:
                 login(request, user)
                 if next == 'None':
-                 return redirect('/phone_account/initial/')
+                 return redirect('user_detail.html/')
                 else:
                     return redirect(to=next)
             
@@ -45,14 +47,18 @@ def login_view(request):
         'next': next
     }
 
-    return render(request, 'phone_account/login.html', param)
+    return render(request, 'login.html', param)
 
 @login_required
 def logout_view(request):
     logout(request)
 
-    return render(request, 'phone_account/logout.html')
+    return render(request, 'logout.html')
 
 @login_required
-def initial_view(request):
-    return render(request, 'phone_account/initial.html')
+def user_detail_view(request):
+    #return HttpResponseRedirect(reverse('phone_account:initial.html'))
+    context = {
+        'user': request.user  # request.user はログインしているユーザーオブジェクトを表します
+    }
+    return render(request, 'user_detail.html',context)

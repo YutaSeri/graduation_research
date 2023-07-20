@@ -12,6 +12,7 @@ table.reg_form{
   width: 100%;
   border-spacing: 10px 30px;
   padding-left:20px;
+  text-align: right;
 }
 
 .btn{

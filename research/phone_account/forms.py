@@ -1,6 +1,5 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth import get_user_model
 
 phone_Account = get_user_model()

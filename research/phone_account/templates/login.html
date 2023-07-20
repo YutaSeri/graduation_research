@@ -1,7 +1,9 @@
 {% load static %}
+{% load django_bootstrap5 %}
 <!doctype html>
 <html lang="ja">
 <head>
+    {% bootstrap_css %}
     <meta charset="utf-8">
     <title>ログイン</title>
     <link rel="stylesheet" href='{% static "phone_account/style.css" %}'/>
@@ -18,7 +20,6 @@
     <p><input type="submit" value="ログイン"></p>
     <p><a href="{% url 'signup'%}">ユーザー登録</a></p>
     </form>
-    
     </table>
     </div>
 </body>

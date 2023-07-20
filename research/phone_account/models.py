@@ -1,7 +1,6 @@
 from django.db import models
-from django.contrib import auth
 from django.contrib.auth.models import AbstractBaseUser,UserManager,PermissionsMixin
-from django.core.validators import EmailValidator
+from django.core.validators import EmailValidator,MinValueValidator, MaxValueValidator
 from django.core.mail import send_mail
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
@@ -31,7 +30,7 @@ class phone_Account(AbstractBaseUser,PermissionsMixin):
 
     username = models.CharField(verbose_name='名前',max_length=255,unique=False,blank=False, null=False)
     gender = models.TextField(verbose_name='性別',choices=GENDER_CHOICES, blank=False, null=False)
-    age = models.IntegerField(verbose_name='年齢', blank=False, null=False)
+    age = models.IntegerField(verbose_name='年齢',validators=[MinValueValidator(0),MaxValueValidator(100)],blank=False, null=False)
     email = models.EmailField(verbose_name='メールアドレス', unique=True,blank=False, validators=[email_validator])
     password = models.CharField(verbose_name='パスワード',max_length=128,unique=True,blank=False, null=False)
     shelter = models.ForeignKey(Shelter, verbose_name='避難所選択',on_delete=models.CASCADE,default=1)
@@ -59,9 +58,6 @@ class phone_Account(AbstractBaseUser,PermissionsMixin):
         super().clean()
         self.email = self.__class__.objects.normalize_email(self.email)
 
-    def get_full_name(self):
-        full_name = "%s %s" % (self.username, self.name_kana)
-        return full_name.strip()
 
 
     def email_user(self, subject, message, from_email=None, **kwargs):
