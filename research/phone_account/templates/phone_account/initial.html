@@ -1,4 +1,8 @@
 {% load static %}
+{% if user.is_authenticated %}
+    <p>{{ user.username }}さん。</p>
+    <!-- 他の属性にアクセスするためのコードを追加 -->
+{% endif %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +13,7 @@
     <h1>登録完了初期画面</h1>
     <ul class="circle-list">
         <li>
-            <button class="circle">物資の要請</button>
+            <a href="{% url 'test'%}"><button class="circle">物資の要請</button></a>
             <button class="circle">その他の要望を申請</button>
         </li>
         <li>

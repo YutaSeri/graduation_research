@@ -37,7 +37,7 @@ from .settings_local import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["192.168.2.102","127.0.0.1"]
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/phone_account/initial/'
@@ -92,8 +92,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'disaster',
-        'USER': 'seriyuta',  
-        'PASSWORD': 'Seri1216', 
+        'USER': 'seri',  
+        'PASSWORD': 'seri1216', 
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -147,8 +147,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [STATIC_DIR,]
+import os
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
 
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'

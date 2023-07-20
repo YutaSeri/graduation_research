@@ -50,9 +50,13 @@ def login_view(request):
 @login_required
 def logout_view(request):
     logout(request)
-
     return render(request, 'phone_account/logout.html')
 
 @login_required
 def initial_view(request):
-    return render(request, 'phone_account/initial.html')
+    user = request.user
+    return render(request, 'phone_account/initial.html',{'user': user})
+
+@login_required
+def test_view(request):
+    return render(request, 'phone_account/test.html')
