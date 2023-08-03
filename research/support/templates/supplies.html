@@ -9,105 +9,30 @@
 </head>
 <body>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="../../static/supplies.js"></script>
+  <script src="{% static 'support/supplies.js' %}"></script>
   <h1>支援物資要望フォーム</h1>
-  
-  <div class="medical-items">
-    <label for="radio1">医療・介護用品</label>
-    <input type="radio" id="radio1" name="medical-items">
-    <div class="sub-radio">
-        <label for="radio1-1">松葉杖</label>
-        <input type="radio" id="radio1-1" name="support-sub-items">
-        <label for="radio1-2">車椅子</label>
-        <input type="radio" id="radio1-2" name="support-sub-items">
-        <label for="radio1-3">歩行器</label>
-        <input type="radio" id="radio1-3" name="support-sub-items">
-    </div>
-  </div>
+  <form id="supportForm">
+      <input type="radio" name="category" value="医療・介護用品">医療・介護用品
+      <input type="radio" name="category" value="食料品">食料品
+      <input type="radio" name="category" value="幼児用品">幼児用品
+      <input type="radio" name="category" value="その他">その他
+      <br>
+      <div id="subCategory"></div>
+      <br>
+      <div id="subSubCategory"></div>
+      <div id="itemDetails"></div>
+      <br>
+      <div id="sub3Category"></div>
+      <br>
+      <div id="clothingCategory"></div>
+      <br>
+      <div id="itemDetails-2"></div>
+      <br>
 
-  <div class="dietary-items">
-    <label for="radio2">特別な食事要件</label>
-    <input type="radio" id="radio2" name="dietary-items">
-    <div class="sub-radio">
-        <label for="radio2-1">アレルギー食品</label>
-        <input type="radio" id="radio2-1" name="dietary-sub-items">
-        <label for="radio2-2">低塩分食品</label>
-        <input type="radio" id="radio2-2" name="dietary-sub-items">
-        <label for="radio2-3">糖尿病管理のための特別な食品</label>
-        <input type="radio" id="radio2-3" name="dietary-sub-items">
-    </div>
-  </div>
-
-  <div class="baby-items">
-    <label for="radio3">幼児用品</label>
-    <input type="radio" id="radio3" name="baby-items">
-    <div class="sub-radio">
-        <label for="radio3-1">ベビーベッド</label>
-        <input type="radio" id="radio3-1" name="baby-sub-items">
-        <label for="radio3-2">ベビーフード</label>
-        <input type="radio" id="radio3-2" name="baby-sub-items">
-        <label for="radio3-3">紙おむつ</label>
-        <input type="radio" id="radio3-3" name="baby-sub-items">
-        <label for="radio3-4">ミルク</label>
-        <input type="radio" id="radio3-4" name="baby-sub-items">
-    </div>
-  </div>
-
-  <div class="psychological-items">
-    <label for="radio4">心理的サポート</label>
-    <input type="radio" id="radio4" name="psychological-items">
-    <div class="sub-radio">
-        <label for="radio4-1">心理カウンセリング</label>
-        <input type="radio" id="radio4-1" name="psychological-sub-items">
-        <label for="radio4-2">心理的な安心感を与えるアイテム</label>
-        <input type="radio" id="radio4-2" name="psychological-sub-items">
-    </div>
-  </div>
-
-  <div class="learning-items">
-    <label for="radio5">学習用具</label>
-    <input type="radio" id="radio5" name="learning-items">
-    <div class="sub-radio">
-        <label for="radio5-1">学校教材</label>
-        <input type="radio" id="radio5-1" name="learning-sub-items">
-        <label for="radio5-2">学習ツール</label>
-        <input type="radio" id="radio5-2" name="learning-sub-items">
-    </div>
-  </div>
-
-  <div class="clothing-items">
-    <label for="radio6">衣料品</label>
-    <input type="radio" id="radio6" name="clothing-items">
-    <div class="sub-radio">
-        <label for="radio6-1">上着</label>
-        <input type="radio" id="radio6-1">
-        <label for="radio6-2">下着・ズボン</label>
-        <input type="radio" id="radio6-2">
-        <label for="radio6-3">靴</label>
-        <input type="radio" id="radio6-3">
-        <label for="radio6-4">その他</label>
-        <input type="radio" id="radio6-4">
-
-        <div class="sub-sub-radio">
-          <label for="radio6-1">上着</label>
-          <input type="radio" id="radio6-1">
-          <label for="radio6-2">下着・ズボン</label>
-          <input type="radio" id="radio6-2">
-          <label for="radio6-3">靴</label>
-          <input type="radio" id="radio6-3">
-          <label for="radio6-4">その他</label>
-          <input type="radio" id="radio6-4">
-      </div>
-    </div>
-    
-  </div>
-    <form>
-      <p>個数</p><input type=”number” name="number" min="1">
-    </form>
-    
-
-
-
-  <button onclick="submitForm()">送信</button>
+      <p>個数</p>
+    <input type="number" name="number" min="1">
+    <button type="submit">送信</button>
+      
+  </form>
 </body>
 </html>
