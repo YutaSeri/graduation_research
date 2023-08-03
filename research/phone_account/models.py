@@ -63,7 +63,19 @@ class phone_Account(AbstractBaseUser,PermissionsMixin):
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
+class p_support_Item(models.Model):
+    item_name = models.CharField(verbose_name='物資一覧',max_length=255)
+    quantity = models.IntegerField(verbose_name='個数')
+    created_at = models.DateTimeField(verbose_name='申請日',default=timezone.now)
+    arrival_date = models.DateTimeField(verbose_name='到着予定日',blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    phone_account = models.ForeignKey(phone_Account, on_delete=models.CASCADE,related_name='support_items')
 
+    class Meta:
+        db_table = 'p_support_Item' 
+    
+    def __str__(self):
+        return self.item_name
 
 
     

@@ -49,7 +49,6 @@ LOGIN_REDIRECT_URL = '/phone_account/users/'
 
 INSTALLED_APPS = [
     'phone_account',
-    'support',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -132,7 +131,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'phone_account.phone_Account'
-ALLOWED_HOSTS = ['localhost','172.17.9.146','127.0.0.1']
+ALLOWED_HOSTS = ['localhost','172.17.9.146','127.0.0.1','150.43.232.119']
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
