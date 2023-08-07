@@ -5,8 +5,7 @@ from django.contrib.auth import login,logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .models import p_support_Item
-
-
+from .models import Other_requests
 def signup_view(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
@@ -116,3 +115,12 @@ def history_view(request):
         'history': user_support_items
     }
     return render(request, 'history.html',context)
+
+@login_required
+def requests_view(request):
+    if request.method == 'POST':
+        request_text = request.POST.get('requests', None)
+        phone_account_id = request.user.id
+        Other_requests.objects.create(requests=request_text, phone_account_id=phone_account_id)
+        return redirect('success')
+    return render(request, 'requests.html')

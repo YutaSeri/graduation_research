@@ -77,7 +77,16 @@ class p_support_Item(models.Model):
     def __str__(self):
         return self.item_name
 
+class Other_requests(models.Model):
+    requests  = models.TextField(verbose_name='その他の要望',max_length=255)
+    created_at = models.DateTimeField(verbose_name='投稿日',default=timezone.now, editable=False)
+    phone_account = models.ForeignKey(phone_Account, on_delete=models.CASCADE)
 
+    class Meta:
+        db_table = 'other_requests' 
+   
+    def __str__(self):
+        return self.requests
     
 
 
