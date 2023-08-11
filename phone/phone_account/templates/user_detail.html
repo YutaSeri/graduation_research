@@ -1,0 +1,31 @@
+{% load static %}
+{% if user.is_authenticated %}
+    <p>{{ user.username }}さん</p>
+{% endif %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>登録完了初期画面</title>
+    <link rel="stylesheet" href='{% static "phone_account/circle.css" %}'/>
+</head>
+
+<body>
+    <h1>登録完了初期画面</h1>
+    <ul class="circle-list">
+        
+        <li>
+            
+            <a href="{% url 'supplies' %}"><button class="circle">物資の要請</button></a>
+            <a href="{% url 'requests' %}"><button class="circle">その他の要望を申請</button></a>
+        </li>
+        <li>
+            <a href="{% url 'history' %}"><button class="circle">過去の申請履歴の表示</button></a>
+            <button class="circle">自治体からの連絡</button>
+        </li>
+        <li>
+            <button class="dotted-button">新規登録情報の変更</button>
+        </li>
+    </ul>
+    <p><a href="{% url 'logout'%}">ログアウト</a></p>
+</body>
+</html>
