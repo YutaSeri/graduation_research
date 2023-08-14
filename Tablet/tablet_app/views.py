@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-def user_detail_view(request):
+def home_view(request):
     
-    return render(request, 'user_detail.html')
+    return render(request, 'home.html')
 
