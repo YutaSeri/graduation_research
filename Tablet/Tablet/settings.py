@@ -15,6 +15,10 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+TEMPLATES_DIR = BASE_DIR /"Template"
+STATIC_DIR = BASE_DIR /"static"
+MEDIA_DIR = BASE_DIR /"media"
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -25,8 +29,7 @@ SECRET_KEY = 'django-insecure-+3ib2qg2&48+%7ga$dh39h#z#4h=_q%m2)dr=c_94wr@enk@l8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['localhost','172.17.9.146','127.0.0.1','150.43.232.119']
 
 # Application definition
 
@@ -121,10 +124,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static_local" ]
+STATICFILES_DIRS = [STATIC_DIR,]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / "media_local"
+MEDIA_ROOT = MEDIA_DIR
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
