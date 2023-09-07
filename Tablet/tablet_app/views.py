@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import TabletAccountAndrequestsForm
+from .forms import SearchForm
 from .models import tablet_account_and_item
 from .models import Shelter
 
@@ -70,3 +71,13 @@ def requests_view(request):
 
 def other_requests_view(request):
     return render(request, 'requests.html')
+
+def search_results_view(request):
+    username = request.GET.get('q', '')
+    results = tablet_account_and_item.objects.filter(username__icontains=username)
+    return render(request, 'search_results.html', {'results': results, 'username': username})
+
+def search_view(request):
+    return render(request, 'search.html')
+    
+
