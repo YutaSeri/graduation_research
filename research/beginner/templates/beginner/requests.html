@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>その他の要望フォーム</title>
+</head>
+<body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <h1>その他の要望フォーム</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" name="submitBtn">送信</button>  
+  </form>
+</body>
+</html>
