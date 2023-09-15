@@ -23,7 +23,7 @@
             <button class="circle">自治体からの連絡</button>
         </li>
         <li>
-            <button class="dotted-button">新規登録情報の変更</button>
+            <a href="{% url 'edit_basic_info' %}"><button class="dotted-button">新規登録情報の変更</button></a>
         </li>
     </ul>
     <p><a href="{% url 'logout'%}">ログアウト</a></p>

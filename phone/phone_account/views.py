@@ -51,6 +51,21 @@ def login_view(request):
     return render(request, 'login.html', param)
 
 @login_required
+def edit_basic_info(request):
+    user = request.user  # ログイン中のユーザーを取得
+    if request.method == 'POST':
+        form = SignupForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()  # フォームの内容を保存
+            return redirect('success')  # ユーザー詳細画面にリダイレクト
+    else:
+        form = SignupForm(instance=user)  # フォームをユーザーデータでプリロード
+    param = {
+        'form': form
+    }
+    return render(request, 'edit_basic_info.html', param)
+
+@login_required
 def logout_view(request):
     logout(request)
 
