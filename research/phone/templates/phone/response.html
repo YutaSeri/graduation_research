@@ -1,0 +1,24 @@
+{% load static %}
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>支援物資要請履歴</title>
+  {% bootstrap_css %}
+</head>
+<body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <h1>自治体からの連絡</h1>
+  <ul>
+    {% for message in messages %}
+      <li>
+        <strong>送信者:</strong> {{ message.message.sender_id.username }}<br>
+        <strong>内容:</strong> {{ message.message.message_text }}<br>
+        <strong>送信日時:</strong> {{ message.message.created_at }}
+      </li>
+    {% empty %}
+      <li>まだメッセージがありません。</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'user_detail' %}">ホームに戻る</a>
