@@ -20,4 +20,7 @@ class Bulletin_middle(models.Model):
 
     class Meta:
         db_table = 'bulletin_middle'
+    
+    def __str__(self):
+        return f'Bulletin Middle ID: {self.pk}, Bulletin: {self.bulletin.notice}, Shelter: {self.shelter.shelter_name}'
 
