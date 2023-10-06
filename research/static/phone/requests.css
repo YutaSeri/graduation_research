@@ -1,0 +1,13 @@
+.form-container {
+  text-align: center;
+}
+textarea {
+  width: center;
+  max-width: 100%; /* 親要素の幅に合わせる */
+  box-sizing: border-box; 
+  }
+
+.form-container textarea, .form-container button {
+    text-align: left;
+    margin: 0 auto;
+}

@@ -1,19 +1,14 @@
+{% extends "phone/base.html" %}
 {% load static %}
-{% load django_bootstrap5 %}
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>支援物資要請履歴</title>
-  {% bootstrap_css %}
-</head>
-<body>
+{% block title %}自治体からの連絡{% endblock %}
+{% block header %}自治体からの連絡{% endblock %}
+{% block content %}
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <h1>自治体からの連絡</h1>
   <ul>
     {% for notice_text in notice_text %}
    <li>
      <strong>送信者:</strong> {{notice_text.bulletin.account.username }}<br>
+     <strong>タイトル:</strong> {{ notice_text.bulletin.title }}<br>
      <strong>内容:</strong> {{ notice_text.bulletin.notice }}<br>
      <strong>送信日時:</strong> {{ notice_text.bulletin.created_at }}
    </li>
@@ -21,4 +16,4 @@
    <li>まだメッセージがありません。</li>
  {% endfor %}
   </ul>
-  <a href="{% url 'user_detail' %}">ホームに戻る</a>
+{% endblock %}

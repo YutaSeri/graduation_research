@@ -3,7 +3,7 @@
 from pathlib import Path
 import os
 
-ALLOWED_HOSTS = ["192.168.2.102","127.0.0.1","150.43.232.119"]
+ALLOWED_HOSTS = ['localhost',"192.168.2.102","127.0.0.1","150.43.232.119"]
 
 LOGIN_URL = '/phone/login/'
 LOGIN_REDIRECT_URL = '/phone/users/'
@@ -28,6 +28,11 @@ from .settings_local import *
 DEBUG = True
 
 
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR /"static"]
+
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'
 
 
 # Application definition
@@ -76,7 +81,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'research.wsgi.application'
-
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
+    "django.contrib.auth.hashers.BCryptPasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
+]
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -95,13 +106,6 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
-PASSWORD_HASHERS = [
-    "django.contrib.auth.hashers.Argon2PasswordHasher",
-    "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
-    "django.contrib.auth.hashers.BCryptPasswordHasher",
-    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
-    "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
-]
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -135,11 +139,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [STATIC_DIR,]
 
-MEDIA_ROOT = MEDIA_DIR
-MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

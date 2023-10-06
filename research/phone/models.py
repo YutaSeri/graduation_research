@@ -33,7 +33,7 @@ class Account(AbstractBaseUser,PermissionsMixin):
     age = models.IntegerField(verbose_name='年齢',validators=[MinValueValidator(0),MaxValueValidator(100)],blank=False, null=False)
     email = models.EmailField(verbose_name='メールアドレス', unique=True,blank=False, validators=[email_validator])
     password = models.CharField(verbose_name='パスワード',max_length=128,unique=True,blank=False, null=False)
-    shelter = models.ForeignKey(Shelter, verbose_name='避難所選択',on_delete=models.CASCADE,default=1)
+    shelter = models.ForeignKey(Shelter, verbose_name='避難所選択',on_delete=models.CASCADE,default=5)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
     is_staff = models.BooleanField(default=False,help_text=_("Designates whether the user can log into this admin site."),)
@@ -82,7 +82,7 @@ class p_support_Item(models.Model):
         return self.item_name
 
 class Other_requests(models.Model):
-    requests  = models.TextField(verbose_name='その他の要望',max_length=255)
+    requests  = models.TextField(verbose_name='その他の要望',max_length=255,blank=False, null=False)
     created_at = models.DateTimeField(verbose_name='投稿日',default=timezone.now, editable=False)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 

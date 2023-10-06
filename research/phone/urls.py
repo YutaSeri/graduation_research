@@ -12,4 +12,5 @@ urlpatterns = [
     path('p_requests/', views.p_requests_view, name='p_requests'),
     path('edit_basic_info/',views.edit_basic_info,name='edit_basic_info'),
     path('response/',views.response_view,name='response'),
+    path('base/',views.base_view,name='base'),
 ]

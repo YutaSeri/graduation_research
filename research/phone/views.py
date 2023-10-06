@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
 from .forms import SignupForm, LoginForm
 from django.contrib.auth import login,logout
 from django.contrib.auth.decorators import login_required
@@ -12,7 +11,7 @@ def signup_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('phone/user_detail')
+            return redirect('user_detail')
 
     else:
         form = SignupForm()
@@ -34,7 +33,7 @@ def login_view(request):
             if user:
                 login(request, user)
                 if next == 'None':
-                 return redirect('phone/user_detail')
+                 return redirect('user_detail')
                 else:
                     return redirect(to=next)
             
@@ -59,7 +58,7 @@ def logout_view(request):
 @login_required
 def user_detail_view(request):
     context = {
-        'user': request.user  # request.user はログインしているユーザーオブジェクトを表します
+        'user': request.user
     }
     return render(request, 'phone/user_detail.html',context)
 
@@ -106,6 +105,10 @@ def supplies_view(request):
 @login_required
 def p_success_view(request):
     return render(request, 'phone/p_success.html')
+
+@login_required
+def base_view(request):
+    return render(request, 'phone/base.html')
 
 @login_required
 def history_view(request):

@@ -1,15 +1,12 @@
+{% extends "phone/base.html" %}
 {% load static %}
-{% load django_bootstrap5 %}
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>支援物資要請履歴</title>
-  {% bootstrap_css %}
-</head>
-<body>
+
+{% block title %}支援物資要請履歴{% endblock %}
+{% block css %}<link rel="stylesheet" href='{% static "phone/history.css" %}'/>{% endblock %}
+
+{% block header %}支援物資要請履歴{% endblock %}
+{% block content %}
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <h1>支援物資要請履歴</h1>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -40,5 +37,4 @@
       {% endfor %}
     </tbody>
   </table>
-</body>
-</html>
+{% endblock %}
