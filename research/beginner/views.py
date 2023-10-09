@@ -46,7 +46,7 @@ def item_view(request):
         quantity = request.POST.get('quantity', 0)
         shelter_id = request.POST.get('shelter')
         beginner_account_and_item.objects.create(username=username,gender=gender,age=age,item_name=item_name,shelter_id=shelter_id,quantity=quantity)
-        return redirect('beginner/success')
+        return redirect('success')
 
     return render(request, 'beginner/supplie.html', {'shelters': shelters})
 
@@ -61,7 +61,7 @@ def requests_view(request):
         form = BiginneraccountandOtherrequests(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('beginner/success')  
+            return redirect('success')  
     else:
         form = BiginneraccountandOtherrequests()
     param = {

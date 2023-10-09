@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href='{% static "phone_account/style.css" %}'/>
+    <title>基本情報登録変更</title>
+</head>
+<body>
+    <h1>基本情報登録変更</h1>
+    <div class="reg">
+    <table class="reg_form">
+    <p>{{message}}</p>
+    <form action="{% url 'p_success'%}" method="post">
+    {% csrf_token %}
+    <p class="form-field"></p>{{ form.as_p }}</p>
+
+    <p><input type="submit" value="変更を保存"></p>
+    <p><a href="{% url 'user_detail'%}">戻る</a></p>
+    </form>
+    </table>
+    </div>
+</body>
+</html>

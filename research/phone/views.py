@@ -5,8 +5,7 @@ from django.contrib.auth import login,logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .models import p_support_Item,Other_requests,Account
-from adminer.models import Message_middle,Message
-
+from adminer.models import Bulletin_middle,Bulletin
 def signup_view(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
@@ -125,6 +124,20 @@ def p_requests_view(request):
         return redirect('p_success')
     return render(request, 'phone/p_requests.html')
 
+@login_required
+def edit_basic_info(request):
+    user =request.user
+    if request.method == 'POST':
+        form = SignupForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('p_success')
+    else:
+        form =SignupForm(instance=user)
+    param = {
+        'form':form
+    }
+    return render(request,'phone/edit_basic_info.html',param)
 
 @login_required
 def response_view(request):
@@ -133,10 +146,9 @@ def response_view(request):
     # 避難者が登録している避難所のIDを取得
     shelter_id = Account.objects.get(id=account_id).shelter_id
     # メッセージをテンプレートに渡す
-    message_text = Message_middle.objects.filter(shelter_id=shelter_id).select_related('message')
-
+    notice_text = Bulletin_middle.objects.filter(shelter_id=shelter_id).select_related('bulletin')
+    print(notice_text) 
     context = {
-        'message_text': message_text,
+        'notice_text': notice_text,
     }
-
     return render(request, 'phone/response.html', context)

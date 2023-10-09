@@ -10,5 +10,6 @@ urlpatterns = [
     path('p_success/', views.p_success_view, name='p_success'),
     path('history/', views.history_view, name='history'),
     path('p_requests/', views.p_requests_view, name='p_requests'),
-    path('response/', views.response_view, name='response'),
+    path('edit_basic_info/',views.edit_basic_info,name='edit_basic_info'),
+    path('response/',views.response_view,name='response'),
 ]
