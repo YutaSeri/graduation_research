@@ -1,31 +1,34 @@
+{% extends "phone/base.html" %}
 {% load static %}
-{% if user.is_authenticated %}
-    <p>{{ user.username }}さん</p>
-{% endif %}
-<!DOCTYPE html>
-<html>
-<head>
-    <title>登録完了初期画面</title>
-    <link rel="stylesheet" href='{% static "phone_account/circle.css" %}'/>
-</head>
 
-<body>
-    <h1>登録完了初期画面</h1>
-    <ul class="circle-list">
-        
-        <li>
-            
-            <a href="{% url 'supplies' %}"><button class="circle">物資の要請</button></a>
-            <a href="{% url 'p_requests' %}"><button class="circle">その他の要望を申請</button></a>
-        </li>
-        <li>
-            <a href="{% url 'history' %}"><button class="circle">過去の申請履歴の表示</button></a>
-            <a href="{% url 'response' %}"><button class="circle">自治体からの連絡</button></a>
-        </li>
-        <li>
-            <a href="{% url 'edit_basic_info' %}"><button class="dotted-button">新規登録情報の変更</button></a>
-        </li>
-    </ul>
-    <p><a href="{% url 'logout'%}">ログアウト</a></p>
-</body>
-</html>
+{% block title %}ホーム画面{% endblock %}
+{% block css %}<link rel="stylesheet" href='{% static "phone/circle.css" %}'/>{% endblock %}
+
+{% block header %}<h1>ホーム画面</h1>{% endblock %}
+{% block content %}
+    <div class="circle-list">   
+            <li>           
+                <a href="{% url 'supplies' %}">
+                    <span class="icon">
+                        <img src='{% static "phone/suplly.png" %}'alt='物資の要請'>
+                    </span>
+                </a>
+                <a href="{% url 'p_requests' %}">
+                    <span class="icon">
+                        <img src='{% static "phone/request.png" %}'alt='その他の要望の申請'>
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'history' %}">
+                    <span class="icon">
+                        <img src='{% static "phone/history.png" %}'alt='過去の申請履歴の表示'>
+                    </span>
+                </a>
+                <a href="{% url 'response' %}">
+                    <span class="icon">
+                        <img src='{% static "phone/news.png" %}'alt='自治体からのお知らせ'>
+                    </span>
+            </li>
+    </div>
+{% endblock %}

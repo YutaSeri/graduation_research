@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
 from .forms import SignupForm, LoginForm
 from django.contrib.auth import login,logout
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .models import p_support_Item,Other_requests,Account
 from adminer.models import Bulletin_middle,Bulletin
+from django.shortcuts import render, get_object_or_404
 def signup_view(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
@@ -59,7 +59,7 @@ def logout_view(request):
 @login_required
 def user_detail_view(request):
     context = {
-        'user': request.user  # request.user はログインしているユーザーオブジェクトを表します
+        'user': request.user
     }
     return render(request, 'phone/user_detail.html',context)
 
@@ -108,6 +108,10 @@ def p_success_view(request):
     return render(request, 'phone/p_success.html')
 
 @login_required
+def base_view(request):
+    return render(request, 'phone/base.html')
+
+@login_required
 def history_view(request):
     user_support_items = p_support_Item.objects.filter (account_id = request.user.id)
     context = {
@@ -152,3 +156,8 @@ def response_view(request):
         'notice_text': notice_text,
     }
     return render(request, 'phone/response.html', context)
+
+@login_required
+def response_detail(request, bulletin_id):
+    bulletin = get_object_or_404(Bulletin, pk=bulletin_id)
+    return render(request, 'phone/response_detail.html', {'bulletin': bulletin})

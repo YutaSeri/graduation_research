@@ -1,16 +1,11 @@
+{% extends "phone/base.html" %}
 {% load static %}
-{% load django_bootstrap5 %}
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>支援物資要望フォーム</title>
-  {% bootstrap_css %}
-</head>
-<body>
+{% block title %}支援物資要望フォーム{% endblock %}
+
+{% block header %}支援物資要望フォーム{% endblock %}
+{% block content %}
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{% static 'support/supplies.js' %}"></script>
-  <h1>支援物資要望フォーム</h1>
   <form id="supportForm" method="post" action="{% url 'supplies' %}">
       {% csrf_token %}
       <input type="radio" name="category" value="医療・介護用品">医療・介護用品
@@ -32,8 +27,6 @@
 
       <p>個数</p>
     <input type="number" name="quantity" min="1">
-    <button type="submit" name="submitBtn">送信</button>
-     
+    <button type="submit" name="submitBtn">送信</button> 
   </form>
-</body>
-</html>
+{% endblock %}

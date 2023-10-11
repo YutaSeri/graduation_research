@@ -1,24 +1,32 @@
+{% extends "phone/base.html" %}
 {% load static %}
-{% load django_bootstrap5 %}
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>支援物資要請履歴</title>
-  {% bootstrap_css %}
-</head>
-<body>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <h1>自治体からの連絡</h1>
-  <ul>
-    {% for notice_text in notice_text %}
-   <li>
-     <strong>送信者:</strong> {{notice_text.bulletin.account.username }}<br>
-     <strong>内容:</strong> {{ notice_text.bulletin.notice }}<br>
-     <strong>送信日時:</strong> {{ notice_text.bulletin.created_at }}
-   </li>
- {% empty %}
-   <li>まだメッセージがありません。</li>
- {% endfor %}
-  </ul>
-  <a href="{% url 'user_detail' %}">ホームに戻る</a>
+{% block title %}自治体からの連絡{% endblock %}
+{% block css %}<link rel="stylesheet" href='{% static "phone/history.css" %}'/>{% endblock %}
+{% block header %}自治体からの連絡{% endblock %}
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<h1>お知らせ一覧</h1>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th scope="col">タイトル</th>
+            <th scope="col">投稿者</th>
+            <th scope="col">日時</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for notice_text in notice_text %}
+        <tr class="bulletin-row" data-content="{{ bulletin.notice }}">
+          <td class="bulletin-title">
+            <a href="{% url 'response_detail' notice_text.bulletin.pk %}">{{notice_text.bulletin.title}}</a>
+          </td>
+          <td>{{ notice_text.bulletin.account.username }}</td>
+          <td>{{ notice_text.bulletin.created_at }}</td>
+        </tr>
+          {% empty %}
+          <li>まだメッセージがありません。</li>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
+  

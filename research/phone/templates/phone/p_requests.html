@@ -1,21 +1,16 @@
+{% extends "phone/base.html" %}
 {% load static %}
-{% load django_bootstrap5 %}
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>その他の要望フォーム</title>
-  <link rel="stylesheet" href='{% static "requests/requests.css" %}'/>
-  {% bootstrap_css %}
-</head>
-<body>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <h1>その他の要望フォーム</h1>
+
+{% block title %}その他の要望フォーム{% endblock %}
+{% block css %}<link rel="stylesheet"  href='{% static "phone/requests.css" %}'/>{% endblock %}
+{% block header %}その他の要望フォーム{% endblock %}
+{% block content %}
+<br>
+<div class="form-container">
   <form method="post">
-    {% csrf_token %}
-    <textarea rows="5" cols="40" name="requests" placeholder="避難所での問題、その他要望がありましたらご気軽にご入力ください。"></textarea>
-    <button type="submit" name="submitBtn">送信</button>
-     
+      {% csrf_token %}
+      <textarea rows="8"cols="35" name="requests" placeholder="避難所での問題、その他要望がありましたらご気軽にご入力ください。"></textarea>
+      <p><button class="btn btn-primary" type="submit">送信</button><br></p>
   </form>
-</body>
-</html>
+</div>
+{% endblock %}

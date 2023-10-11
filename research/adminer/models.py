@@ -4,7 +4,8 @@ from phone.models import Shelter
 
 
 class Bulletin(models.Model):
-    notice = models.CharField(max_length=30)
+    title = models.CharField(verbose_name='タイトル',max_length=30)
+    notice = models.CharField(verbose_name='お知らせ内容',max_length=300)
     created_at = models.DateTimeField(auto_now_add=True)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
@@ -12,7 +13,8 @@ class Bulletin(models.Model):
         db_table = 'bulletin' 
     
     def __str__(self):
-        return self.notice
+        return self.title
+        
 
 class Bulletin_middle(models.Model):
     bulletin = models.ForeignKey(Bulletin, verbose_name='投稿内容',on_delete=models.CASCADE)
@@ -22,5 +24,5 @@ class Bulletin_middle(models.Model):
         db_table = 'bulletin_middle'
     
     def __str__(self):
-        return f'Bulletin Middle ID: {self.pk}, Bulletin: {self.bulletin.notice}, Shelter: {self.shelter.shelter_name}'
+        return f'Bulletin Middle ID: {self.pk}, Bulletin: {self.bulletin.title}, Shelter: {self.shelter.shelter_name}'
 
