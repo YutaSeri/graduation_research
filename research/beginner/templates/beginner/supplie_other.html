@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>支援物資要請フォーム①</title>
+    <link rel="stylesheet" href='{% static "beginner/supplie3.css" %}'/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  </head>
+
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
+    <header>
+        <h3>支援物資要請フォーム</h3>
+    </header>
+    <main class="form-signin">
+      <div class="d-flex flex-column align-items-center">
+        <form class="text-center" method="post">
+          {% csrf_token %}
+          <div class="square-list">
+            <div class="square">
+              <input id="other-1" type="submit" name="category" value="衣服品">
+              <label for="other-1"><img src='{% static "beginner/clothes.png" %}' alt="衣服品"></label>
+            </div>
+            <div class="square">
+              <input id="other-2" type="submit" name="category" value="靴">
+              <label for="other-2"><img src='{% static "beginner/shoes.png" %}' alt="靴"></label>
+            </div>
+            <div class="square">
+              <input id="other-3" type="submit" name="category" value="トイレットペーパー">
+              <label for="other-3"><img src='{% static "beginner/paper.png" %}' alt="トイレットペーパー"></label>
+            </div>
+          </div>
+          <div class="square-list">
+              <div class="square">
+                <input id="other-4" type="submit" name="category" value="毛布">
+                <label for="other-4"><img src='{% static "beginner/blanket.png" %}' alt="毛布"></label>
+              </div>
+              <div class="square">
+                <input id="other-5" type="submit" name="category" value="携帯トイレ">
+                <label for="other-5"><img src='{% static "beginner/portable_toilet.png" %}' alt="携帯トイレ"></label>
+              </div>
+              <div class="square">
+                <input id="other-6" type="submit" name="category" value="テキスト入力">
+                <label for="other-6">テキスト入力</label>
+              </div>
+          </div> 
+        </form>
+    <br><a href="{% url 'home' %}"><button class="btn btn-success">ホーム画面に戻る</button></a>
+  </body>
+</html>

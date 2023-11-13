@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>支援物資要請フォーム①</title>
+    <link rel="stylesheet" href='{% static "beginner/supplie3.css" %}'/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  </head>
+
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
+    <header>
+        <h3>支援物資要請フォーム</h3>
+    </header>
+    <form class="text-center" method="post">
+      {% csrf_token %}
+      <div class="square-list">
+        <div class="square">
+          <input id="medical-3-1" type="submit" name="category" value="サークル型">
+          <label for="medical-3-1">サークル型</label>
+        </div>
+        <div class="square">
+          <input id="medical-3-2" type="submit" name="category" value="四輪歩行車">
+          <label for="medical-3-2">四輪歩行車</label>
+        </div>
+      </div>
+    </form>
+    <br><a href="{% url 'home' %}"><button class="btn btn-success">ホーム画面に戻る</button></a>
+  </body>
+</html>

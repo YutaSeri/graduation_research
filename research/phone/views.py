@@ -66,36 +66,27 @@ def user_detail_view(request):
 @login_required
 def supplies_view(request):
     if request.method == 'POST':
+        Category = request.POST.get('category', None)
+        Category1 = request.POST.get('category1', None)
+        Category2 = request.POST.get('category2', None)
+        Category3 = request.POST.get('category3', None)
+        Category4 = request.POST.get('category4', None)
+        Category5 = request.POST.get('category5', None)
+        Category6 = request.POST.get('category6', None)
+          
         item_name = ''
-
-        selectedCategory = request.POST.get('category', None)
-        if selectedCategory:
-            item_name += selectedCategory
-
-            selectedSubCategory1 = request.POST.get('subCategory', None)
-            itemDetails = request.POST.get('itemDetails', None)
-            if selectedSubCategory1:
-                item_name += ' ' + selectedSubCategory1
-            elif itemDetails:
-                item_name += ' ' + itemDetails
-            
-                selectedSubCategory2 = request.POST.get('subSubCategory', None)
-                itemDetails = request.POST.get('itemDetailsText', None)
-                if selectedSubCategory2:
-                    item_name += ' ' + selectedSubCategory2
-                elif itemDetails:
-                    item_name += ' ' + itemDetails
-
-                    selectedSubCategory3 = request.POST.get('sub3Category', None)
-                    if selectedSubCategory3:
-                        item_name += ' ' + selectedSubCategory3
-
-                        selectedSubCategory4 = request.POST.get('clothingCategory', None)
-                        itemDetails2 = request.POST.get('itemDetails-2', None)
-                        if selectedSubCategory4:
-                            item_name += ' ' + selectedSubCategory4
-                        elif itemDetails2:
-                            item_name += ' ' + itemDetails2
+        if Category:
+            item_name += Category
+        if Category1:
+            item_name += ' ' + Category1
+        if Category2:
+            item_name += ' ' + Category2
+        if Category3:
+            item_name += ' ' + Category3
+        if Category4:
+            item_name += ' ' + Category4
+        if Category5:
+            item_name += ' ' + Category5
         quantity = request.POST.get('quantity', 0)
         account_id = request.user.id
         p_support_Item.objects.create(item_name=item_name, quantity=quantity, account_id=account_id)

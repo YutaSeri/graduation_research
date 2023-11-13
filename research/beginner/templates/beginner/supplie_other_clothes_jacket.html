@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>支援物資要請フォーム①</title>
+    <link rel="stylesheet" href='{% static "beginner/supplie4.css" %}'/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  </head>
+
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
+    <header>
+        <h3>支援物資要請フォーム</h3>
+    </header>
+    <form class="text-center" method="post">
+      {% csrf_token %}
+      <div class="square-list">
+        <div class="square">
+          <input id="other-1" type="radio" name="category1" value="長袖">
+          <label for="other-1">長袖</label>
+        </div>
+        <div class="square">
+          <input id="other-2" type="radio" name="category1" value="半袖">
+          <label for="other-2">半袖</label>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <label for="other1" class="form-label">サイズ入力</label>
+        <select id="other1" name="category2" class="form-select" required>
+          <option value="120cm">120cm</option>
+          <option value="130cm">130cm</option>  
+          <option value="140cm">140cm</option>
+          <option value="150cm">150cm</option>
+          <option value="160cm">160cm</option>
+          <option value="XS">XS</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+          <option value="2XL">2XL</option>
+          <option value="3XL">3XL</option>  
+          <option value="4XL">4XL</option>
+        </select>  
+      </div>
+      <br><button class="btn btn-primary" type="submit" name="submitBtn">次へ</button>
+    </form>
+    <br><a href="{% url 'home' %}"><button class="btn btn-success">ホーム画面に戻る</button></a>
+  </body>
+</html>

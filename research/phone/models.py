@@ -9,9 +9,9 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Shelter(models.Model):
-    shelter_name = models.CharField(max_length=30)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    shelter_name = models.CharField(verbose_name='避難所名',max_length=30)
+    created_at = models.DateTimeField(verbose_name='登録日時',auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='更新日時',auto_now=True)
 
     class Meta:
         db_table = 'Shelter' 
@@ -34,8 +34,8 @@ class Account(AbstractBaseUser,PermissionsMixin):
     email = models.EmailField(verbose_name='メールアドレス', unique=True,blank=False, validators=[email_validator])
     password = models.CharField(verbose_name='パスワード',max_length=128,unique=True,blank=False, null=False)
     shelter = models.ForeignKey(Shelter, verbose_name='避難所選択',on_delete=models.CASCADE,default=1)
-    created_at = models.DateTimeField(default=timezone.now)
-    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(verbose_name='登録日時',default=timezone.now)
+    updated_at = models.DateTimeField(verbose_name='更新日時',auto_now=True)
     is_staff = models.BooleanField(default=False,help_text=_("Designates whether the user can log into this admin site."),)
     is_superuser = models.BooleanField(default=False,help_text=_("Designates that this user has all permissions without ""explicitly assigning them."),)
 
@@ -72,7 +72,7 @@ class p_support_Item(models.Model):
     quantity = models.IntegerField(verbose_name='個数')
     created_at = models.DateTimeField(verbose_name='申請日',default=timezone.now)
     arrival_date = models.DateTimeField(verbose_name='到着予定日',blank=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(verbose_name='更新日時',auto_now=True)
     account = models.ForeignKey(Account, on_delete=models.CASCADE,related_name='support_items')
 
     class Meta:

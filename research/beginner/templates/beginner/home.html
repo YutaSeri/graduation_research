@@ -3,20 +3,36 @@
 <html>
 <head>
     <title>初期画面</title>
-    <link rel="stylesheet" href='{% static "tablet_app/circle.css" %}'/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href='{% static "beginner/home.css" %}'/>
 </head>
 
 <body>
-    <h1>初期画面</h1>
+    <h1>ホーム画面</h1>
     <div class="square-list">
         <div>
-            <a href="{% url 'item' %}"><button class="square">物資の要請</button></a>
+            <a href="{% url 'supplie1' %}">
+                <span class="square">
+                    <img src='{% static "phone/suplly.png" %}'alt='物資の要請'>
+                </span>
+            </a>
         </div>
         <div>
-            <a href="{% url 'requests' %}"><button class="square">その他の要望を申請</button></a>
+            <a href="{% url 'requests1' %}">
+                <span class="square">
+                    <img src='{% static "phone/request.png" %}'alt='その他の要望の申請'>
+                </span>
+            </a>
         </div>
         <div>
-            <a href="{% url 'search' %}"><button class="square">過去の申請履歴の表示</button></a>
+            <a href="{% url 'search' %}">
+                <span class="square">
+                    <img src='{% static "phone/history.png" %}'alt='過去の申請履歴の表示'>
+                </span>
+            </a>
         </div>
     </div>
 </body>

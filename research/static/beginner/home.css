@@ -12,9 +12,11 @@ body {
 h1 {
     text-align: center;
     margin-top: 50px;
+    font-size: 75px;
 }
 
 .square-list {
+
     display: flex;
     justify-content: center;
     list-style: none;
@@ -26,9 +28,9 @@ h1 {
 }
 
 .square {
-    width: 200px;
-    height: 200px;
-    background-color: #ec4646;
+    width: 350px;
+    height: 350px;
+    background-color: #bccced;
     color: #fff;
     font-size: 20px;
     display: flex;
@@ -40,6 +42,10 @@ h1 {
     transition: background-color 0.3s;
 }
 
+.square img {
+    width: 350px; 
+    height: 350px; 
+}
 .square:hover {
-    background-color: #b53939;
+    background-color: #5e88eb;
 }

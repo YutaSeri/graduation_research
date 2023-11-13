@@ -1,32 +1,43 @@
 {% extends "phone/base.html" %}
 {% load static %}
 {% block title %}支援物資要望フォーム{% endblock %}
+{% block css %}<link rel="stylesheet" href='{% static "phone/supplies.css" %}'/>{% endblock %}
 
 {% block header %}支援物資要望フォーム{% endblock %}
 {% block content %}
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{% static 'support/supplies.js' %}"></script>
+  <br>
   <form id="supportForm" method="post" action="{% url 'supplies' %}">
       {% csrf_token %}
-      <input type="radio" name="category" value="医療・介護用品">医療・介護用品
-      <input type="radio" name="category" value="食料品">食料品
-      <input type="radio" name="category" value="幼児用品">幼児用品
-      <input type="radio" name="category" value="その他">その他
+      <div class="form-group">
+        <label for="category">項目1:</label>
+        <select id="category" class="form-control" name="category">
+          <option hidden>項目を選択してください &#9660</option>
+          <option value="医療・介護用品">医療・介護用品</option>
+          <option value="食料品">食料品</option>
+          <option value="幼児用品">幼児用品</option>
+          <option value="その他">その他</option>
+          <option value="テキスト入力">テキスト入力</option>
+        </select>
+      </div>
       <br>
-      <div id="subCategory"></div>
+      <div id="label-1"></div>
+      <div id="category1"></div>
       <br>
-      <div id="subSubCategory"></div>
-      <div id="itemDetails"></div>
+      <div id="label-2"></div>
+      <div id="category2"></div>
       <br>
-      <div id="sub3Category"></div>
+      <div id="label-3"></div>
+      <div id="category3"></div>
       <br>
-      <div id="clothingCategory"></div>
-      <br>
-      <div id="itemDetails-2"></div>
-      <br>
-
-      <p>個数</p>
-    <input type="number" name="quantity" min="1">
-    <button type="submit" name="submitBtn">送信</button> 
+      <div id="label-4"></div>
+      <div id="category4"></div>
+      <br>  
+      <div id="label-5"></div>
+      <div id="category5"></div>
+      <br>  
+      <div id="label-6"></div>
+      <div id="category6"></div>
   </form>
 {% endblock %}
