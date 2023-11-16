@@ -16,7 +16,11 @@ class beginner_account_and_item(models.Model):
     updated_at = models.DateTimeField(verbose_name='更新日時',auto_now=True)
 
     class Meta:
-        db_table = 'beginner_account_and_item'  
+        db_table = 'beginner_account_and_item' 
+        verbose_name_plural ="情報弱者支援物資要請一覧" 
+    
+    def __str__(self):
+        return self.item_name
 
 class biginner_account_and_Other_requests(models.Model):
     username = models.CharField(verbose_name='名前',max_length=255,unique=False,blank=False, null=False)
@@ -25,3 +29,7 @@ class biginner_account_and_Other_requests(models.Model):
     created_at = models.DateTimeField(verbose_name='登録日時',default=timezone.now)
     class Meta:
         db_table = 'biginner_account_and_Other_requests'
+        verbose_name_plural = "情報弱者その他の要望一覧"
+    
+    def __str__(self):
+        return self.requests

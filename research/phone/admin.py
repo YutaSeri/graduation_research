@@ -1,10 +1,50 @@
 from django.contrib import admin
-from .models import Account
-from .models import p_support_Item
-from .models import Other_requests
-from .models import Shelter
+from .models import Account, p_support_Item, Other_requests, Shelter
 
-admin.site.register(Account)
-admin.site.register(p_support_Item)
-admin.site.register(Other_requests)
+class SupportItemInline(admin.TabularInline):
+    model = p_support_Item
+    fields = ['item_name', 'quantity','created_at','arrival_date']
+    readonly_fields = ['created_at']
+    extra = 0  
+class OtherRequestsInline(admin.TabularInline):
+    model = Other_requests
+    fields = ['requests', 'created_at']
+    readonly_fields = ['created_at']
+    extra = 0 
+class AccountAdmin(admin.ModelAdmin):
+    inlines = [SupportItemInline, OtherRequestsInline]
+    list_display = ['username', 'gender', 'age','get_shelter_name']  # 一覧表示で表示するフィールド
+    def get_shelter_name(self, obj):
+        return obj.shelter.shelter_name
+    get_shelter_name.short_description = '避難所名'  
+
+class SupportItemAdmin(admin.ModelAdmin):
+    list_display = ['item_name', 'quantity','get_account_name', 'get_account_gender','get_account_age','created_at', 'arrival_date','get_shelter_name',]
+
+    def get_account_name(self, obj):
+        return obj.account.username
+    def get_account_gender(self, obj):
+        return obj.account.gender
+    def get_account_age(self, obj):
+        return obj.account.age
+    def get_shelter_name(self, obj):
+        return obj.account.shelter.shelter_name
+    get_account_name.short_description = '名前'
+    get_account_gender.short_description = '性別'
+    get_shelter_name.short_description = '避難所名'
+
+class OtherRequestsAdmin(admin.ModelAdmin):
+    list_display = ['requests','get_account_name','created_at','get_shelter_name',]
+
+    def get_account_name(self, obj):
+        return obj.account.username
+    def get_shelter_name(self, obj):
+        return obj.account.shelter.shelter_name
+    get_account_name.short_description = '名前'
+    get_shelter_name.short_description = '避難所名'
+
+admin.site.register(Account, AccountAdmin)
+admin.site.register(p_support_Item, SupportItemAdmin)
+admin.site.register(Other_requests,OtherRequestsAdmin)
 admin.site.register(Shelter)
+

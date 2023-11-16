@@ -15,6 +15,7 @@ class Shelter(models.Model):
 
     class Meta:
         db_table = 'Shelter' 
+        verbose_name_plural = _("避難所登録")
 
     def __str__(self):
         return self.shelter_name
@@ -59,8 +60,8 @@ class Account(AbstractBaseUser,PermissionsMixin):
         self.email = self.__class__.objects.normalize_email(self.email)
     
     def get_full_name(self):
-        full_name = "%s %s" % (self.username, self.name_kana)
-        return full_name.strip()
+     return self.username.strip()
+
 
 
 
@@ -70,13 +71,14 @@ class Account(AbstractBaseUser,PermissionsMixin):
 class p_support_Item(models.Model):
     item_name = models.CharField(verbose_name='物資一覧',max_length=255)
     quantity = models.IntegerField(verbose_name='個数')
-    created_at = models.DateTimeField(verbose_name='申請日',default=timezone.now)
+    created_at = models.DateTimeField(verbose_name='申請日',default=timezone.now, editable=False)
     arrival_date = models.DateTimeField(verbose_name='到着予定日',blank=True, null=True)
     updated_at = models.DateTimeField(verbose_name='更新日時',auto_now=True)
     account = models.ForeignKey(Account, on_delete=models.CASCADE,related_name='support_items')
 
     class Meta:
-        db_table = 'p_support_Item' 
+        db_table = 'p_support_Item'
+        verbose_name_plural = _("支援物資要請一覧")
     
     def __str__(self):
         return self.item_name
@@ -87,7 +89,9 @@ class Other_requests(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'other_requests' 
+        db_table = 'other_requests'
+        verbose_name_plural = _("その他の要望一覧")
+         
    
     def __str__(self):
         return self.requests

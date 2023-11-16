@@ -38,6 +38,8 @@ MEDIA_URL = '/media/'
 # Application definition
 
 INSTALLED_APPS = [
+    # 'adminlte3',
+    # 'adminlte3_theme',
     'phone',
     'beginner',
     'adminer',
