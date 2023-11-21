@@ -11,6 +11,10 @@ class OtherRequestsInline(admin.TabularInline):
     fields = ['requests', 'created_at']
     readonly_fields = ['created_at']
     extra = 0 
+
+class ShelterAdmin(admin.ModelAdmin):
+    list_display = ['shelter_name', 'created_at', ]  # 一覧表示で表示するフィールド
+
 class AccountAdmin(admin.ModelAdmin):
     inlines = [SupportItemInline, OtherRequestsInline]
     list_display = ['username', 'gender', 'age','get_shelter_name']  # 一覧表示で表示するフィールド
@@ -20,6 +24,9 @@ class AccountAdmin(admin.ModelAdmin):
 
 class SupportItemAdmin(admin.ModelAdmin):
     list_display = ['item_name', 'quantity','get_account_name', 'get_account_gender','get_account_age','created_at', 'arrival_date','get_shelter_name',]
+    list_filter = ['account__username','account__shelter__shelter_name', 'created_at','arrival_date']
+    search_fields = ['item_name','account__username','account__shelter__shelter_name', 'arrival_date']
+    
 
     def get_account_name(self, obj):
         return obj.account.username
@@ -31,10 +38,12 @@ class SupportItemAdmin(admin.ModelAdmin):
         return obj.account.shelter.shelter_name
     get_account_name.short_description = '名前'
     get_account_gender.short_description = '性別'
+    get_account_age.short_description = '年齢'
     get_shelter_name.short_description = '避難所名'
 
 class OtherRequestsAdmin(admin.ModelAdmin):
     list_display = ['requests','get_account_name','created_at','get_shelter_name',]
+    list_filter = ['account__username','account__shelter__shelter_name','created_at']
 
     def get_account_name(self, obj):
         return obj.account.username
@@ -46,5 +55,5 @@ class OtherRequestsAdmin(admin.ModelAdmin):
 admin.site.register(Account, AccountAdmin)
 admin.site.register(p_support_Item, SupportItemAdmin)
 admin.site.register(Other_requests,OtherRequestsAdmin)
-admin.site.register(Shelter)
+admin.site.register(Shelter,ShelterAdmin)
 

@@ -11,6 +11,7 @@ class Bulletin(models.Model):
 
     class Meta:
         db_table = 'bulletin' 
+        verbose_name = "[お知らせ]"
         verbose_name_plural ="自治体からのお知らせ"
     
     def __str__(self):

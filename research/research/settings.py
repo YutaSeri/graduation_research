@@ -3,7 +3,7 @@
 from pathlib import Path
 import os
 
-ALLOWED_HOSTS = ['localhost',"192.168.2.102","127.0.0.1","150.43.232.119","192.168.2.103"]
+ALLOWED_HOSTS = ['localhost',"192.168.2.102","127.0.0.1","150.43.232.119","192.168.2.103","172.17.13.89"]
 
 LOGIN_URL = '/phone/login/'
 LOGIN_REDIRECT_URL = '/phone/users/'

@@ -4,6 +4,7 @@ from phone.models import Shelter
 
 class Support_ItemAdmin(admin.ModelAdmin):
     list_display = ['username','gender', 'age','item_name','quantity','created_at', 'arrival_date','get_shelter_name',]
+    list_filter = ['username','shelter__shelter_name', 'created_at','arrival_date']
     def get_shelter_name(self, obj):
         return obj.shelter.shelter_name
     get_shelter_name.short_description = '避難所名'  
@@ -11,6 +12,7 @@ class Support_ItemAdmin(admin.ModelAdmin):
 
 class Other_RequestsAdmin(admin.ModelAdmin):
     list_display = ['requests','username','created_at','get_shelter_name',]
+    list_filter = ['username','shelter__shelter_name', 'created_at']
     def get_shelter_name(self, obj):
         return obj.shelter.shelter_name
     get_shelter_name.short_description = '避難所名'

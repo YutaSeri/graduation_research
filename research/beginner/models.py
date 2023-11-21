@@ -17,6 +17,7 @@ class beginner_account_and_item(models.Model):
 
     class Meta:
         db_table = 'beginner_account_and_item' 
+        verbose_name = "[情報弱者支援物資]"
         verbose_name_plural ="情報弱者支援物資要請一覧" 
     
     def __str__(self):
@@ -29,6 +30,7 @@ class biginner_account_and_Other_requests(models.Model):
     created_at = models.DateTimeField(verbose_name='登録日時',default=timezone.now)
     class Meta:
         db_table = 'biginner_account_and_Other_requests'
+        verbose_name = "[情報弱者その他の要望]"
         verbose_name_plural = "情報弱者その他の要望一覧"
     
     def __str__(self):

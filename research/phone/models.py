@@ -78,6 +78,7 @@ class p_support_Item(models.Model):
 
     class Meta:
         db_table = 'p_support_Item'
+        verbose_name = "[支援物資]"
         verbose_name_plural = _("支援物資要請一覧")
     
     def __str__(self):
@@ -90,6 +91,7 @@ class Other_requests(models.Model):
 
     class Meta:
         db_table = 'other_requests'
+        verbose_name = "[その他の要望]"
         verbose_name_plural = _("その他の要望一覧")
          
    

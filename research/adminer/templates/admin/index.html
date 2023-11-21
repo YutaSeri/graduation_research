@@ -1,0 +1,192 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="ja" dir="{{ LANGUAGE_BIDI|yesno:'rtl,ltr,auto' }}">
+<head>
+<title>避難者個別物資要望管理システム</title>
+<link rel="stylesheet" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}">
+<link rel="stylesheet" href="{% static "admin/css/dark_mode.css" %}">
+<script src="{% static "admin/js/theme.js" %}" defer></script>
+<link rel="stylesheet" href="{% static "admin/css/nav_sidebar.css" %}">
+<script src="{% static 'admin/js/nav_sidebar.js' %}" defer></script>
+<link rel="stylesheet" href="{% static "admin/base.css" %}">
+<link rel="stylesheet" href="{% static 'AdminLTE-3.2.0/plugins/fontawesome-free/css/all.min.css'%}">
+<link rel="stylesheet" href="{% static 'AdminLTE-3.2.0/dist/css/adminlte.min.css'%}">
+<link rel="stylesheet" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}">
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link rel="stylesheet" href="{% static "admin/css/responsive.css" %}">
+<link rel="stylesheet" href="{% static "admin/css/responsive_rtl.css" %}">
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}"
+  data-admin-utc-offset="{% now "Z" %}">
+<a href="#content-start" class="skip-to-content-link">{% translate 'Skip to main content' %}</a>
+<!-- Container -->
+<div id="container">
+
+    {% if not is_popup %}
+    <!-- Header -->
+    {% block header %}
+    <div id="header">
+        <div id="branding">
+        {% block branding %}
+        <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+        {% endblock %}
+        </div>
+        {% block usertools %}
+        {% if has_permission %}
+        <div id="user-tools">
+            {% block welcome-msg %}
+                {% translate 'Welcome,' %}
+                <strong>{% firstof user.get_short_name user.get_username %}</strong>.
+            {% endblock %}
+            {% block userlinks %}
+                {% if site_url %}
+                    <a href="{{ site_url }}">{% translate 'View site' %}</a> /
+                {% endif %}
+                {% if user.is_active and user.is_staff %}
+                    {% url 'django-admindocs-docroot' as docsroot %}
+                    {% if docsroot %}
+                        <a href="{{ docsroot }}">{% translate 'Documentation' %}</a> /
+                    {% endif %}
+                {% endif %}
+                {% if user.has_usable_password %}
+                <a href="{% url 'admin:password_change' %}">{% translate 'Change password' %}</a> /
+                {% endif %}
+                <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">{% translate 'Log out' %}</button>
+                </form>
+                {% include "admin/color_theme_toggle.html" %}
+            {% endblock %}
+        </div>
+        {% endif %}
+        {% endblock %}
+        {% block nav-global %}{% endblock %}
+    </div>
+    {% endblock %}
+    <!-- END Header -->
+    
+    {% block nav-breadcrumbs %}
+      <nav aria-label="{% translate 'Breadcrumbs' %}">
+        {% block breadcrumbs %}
+          <div class="breadcrumbs">
+            <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+            {% if title %} &rsaquo; {{ title }}{% endif %}
+          </div>
+        {% endblock %}
+      </nav>
+    {% endblock %}
+    {% endif %}
+
+    <div class="main" id="main">
+      {% if not is_popup and is_nav_sidebar_enabled %}
+        {% block nav-sidebar %}
+          {% include "admin/nav_sidebar.html" %}
+        {% endblock %}
+      {% endif %}
+      <div id="content-start" class="content" tabindex="-1">
+        {% block messages %}
+          {% if messages %}
+            <ul class="messagelist">{% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+            {% endfor %}</ul>
+          {% endif %}
+        {% endblock messages %}
+        <!-- Content -->
+        <div id="content" class="{% block coltype %}colM{% endblock %}">
+          {% block pretitle %}{% endblock %}
+          {% block content_title %}<h1>ホーム画面</h1>{% endblock %}
+          {% block content_subtitle %}{% if subtitle %}<h2>{{ subtitle }}</h2>{% endif %}{% endblock %}
+          {% block content %}
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+              <!-- Content Header (Page header) -->
+              <!-- Main content -->
+              <section class="content">
+                <div class="container-fluid">
+                  <!-- Small boxes (Stat box) -->
+                  <div class="row">
+                    <div class="col-lg-3 col-6">
+                      <!-- small box -->
+                      <div class="small-box bg-info">
+                        <div class="inner">
+                          <h4>避難所<br>登録・削除</h4>
+                        </div>
+                        <a href="/admin/phone/shelter/" class="small-box-footer">詳細画面 <i class="fas fa-arrow-circle-right"></i></a>
+                      </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                      <!-- small box -->
+                      <div class="small-box bg-success">
+                        <div class="inner">
+                          <h4>避難者<br>支援物資要請一覧</h4>
+                        </div>
+                        <a href="/admin/phone/p_support_item/" class="small-box-footer">詳細画面 <i class="fas fa-arrow-circle-right"></i></a>
+                      </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                      <!-- small box -->
+                      <div class="small-box bg-warning">
+                        <div class="inner">
+                          <h4>避難者<br>その他の要望一覧</h4>
+                        </div>
+                        <a href="/admin/phone/other_requests/" class="small-box-footer">詳細画面<i class="fas fa-arrow-circle-right"></i></a>
+                      </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                      <!-- small box -->
+                      <div class="small-box bg-danger">
+                        <div class="inner">
+                          <h4>情報弱者向け<br>支援物資要請一覧</h4>
+                        </div>
+                        <a href="/admin/beginner/beginner_account_and_item/" class="small-box-footer">詳細画面 <i class="fas fa-arrow-circle-right"></i></a>
+                      </div>
+                    </div>
+                    <!-- ./col -->
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                      <!-- small box -->
+                      <div class="small-box bg-primary">
+                        <div class="inner">
+                          <h4>情報弱者向け<br>その他の要請一覧</h4>
+                        </div>
+                        <a href="/admin/beginner/biginner_account_and_other_requests/" class="small-box-footer">詳細画面<i class="fas fa-arrow-circle-right"></i></a>
+                      </div>  
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+                      <!-- small box -->
+                      <div class="small-box  bg-dark">
+                        <div class="inner">
+                          <h4>自治体からの<br>お知らせ</h4>
+                        </div>
+                        <a href="/admin/adminer/bulletin/" class="small-box-footer">詳細画面<i class="fas fa-arrow-circle-right"></i></a>
+                      </div>  
+                    </div>
+                  </div>
+          {% endblock %}
+          {% block sidebar %}{% endblock %}
+          <br class="clear">
+        </div>
+        <!-- END Content -->
+      </div>
+    </div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
