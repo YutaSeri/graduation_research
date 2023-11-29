@@ -7,34 +7,20 @@
 {% block header %}<h1>支援物資要請履歴</h1>{% endblock %}
 {% block content %}
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <table class="table table-bordered table-striped">
-    <thead class="table-light">
-      <tr>
-        <th>アイテム名</th>
-        <th>個数</th>
-        <th>申請日</th>
-        <th>到着予定日</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for item in history %}
-        <tr>
-          <td>{{ item.item_name }}</td>
-          <td>{{ item.quantity }}個</td>
-          <td>{{ item.created_at }}</td>
-          <td>
-            {% if item.arrival_date %}
-              {{ item.arrival_date }}
-            {% else %}
-              未定
-            {% endif %}
-          </td>
-        </tr>
-      {% empty %}
-        <tr>
-          <td colspan="4">サポートアイテムはありません。</td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+    {% for item in history %}
+      <div class="item-box">
+        <div>アイテム名: {{ item.item_name }}</div>
+        <div>個数: {{ item.quantity }}個</div>
+        <div>申請日: {{ item.created_at }}</div>
+        <div>到着予定日: 
+          {% if item.arrival_date %}
+            {{ item.arrival_date }}
+          {% else %}
+            未定
+          {% endif %}
+        </div>
+      </div>
+    {% empty %}
+  <div>サポートアイテムはありません。</div>
+{% endfor %}
 {% endblock %}
