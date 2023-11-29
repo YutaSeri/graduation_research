@@ -7,8 +7,9 @@
     <title>データ保存完了</title>
 </head>
 <body>
-    <h1>データ保存が完了しました！</h1>
-    <p><a href="{% url 'user_detail'%}">初期画面</a></p>
-
+    <h1>申請が完了しました！</h1>
+    <script type="text/javascript">
+        setTimeout(function() {window.location.href = '{% url "user_detail" %}';}, 2000); 
+    </script>
 </body>
 </html>

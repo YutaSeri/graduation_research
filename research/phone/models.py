@@ -30,7 +30,7 @@ class Account(AbstractBaseUser,PermissionsMixin):
     email_validator = EmailValidator()
 
     username = models.CharField(verbose_name='名前',max_length=255,unique=False,blank=False, null=False)
-    gender = models.TextField(verbose_name='性別',choices=GENDER_CHOICES, blank=False, null=False)
+    gender = models.CharField(verbose_name='性別',max_length=128,choices=GENDER_CHOICES, blank=False, null=False)
     age = models.IntegerField(verbose_name='年齢',validators=[MinValueValidator(0),MaxValueValidator(100)],blank=False, null=False)
     email = models.EmailField(verbose_name='メールアドレス', unique=True,blank=False, validators=[email_validator])
     password = models.CharField(verbose_name='パスワード',max_length=128,unique=True,blank=False, null=False)
@@ -72,7 +72,7 @@ class p_support_Item(models.Model):
     item_name = models.CharField(verbose_name='物資一覧',max_length=255)
     quantity = models.IntegerField(verbose_name='個数')
     created_at = models.DateTimeField(verbose_name='申請日',default=timezone.now, editable=False)
-    arrival_date = models.DateTimeField(verbose_name='到着予定日',blank=True, null=True)
+    arrival_date = models.DateTimeField(verbose_name='到着予定日',blank=True,null=True)
     updated_at = models.DateTimeField(verbose_name='更新日時',auto_now=True)
     account = models.ForeignKey(Account, on_delete=models.CASCADE,related_name='support_items')
 

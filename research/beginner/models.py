@@ -6,8 +6,8 @@ from phone.models import Shelter
 
 class beginner_account_and_item(models.Model):
     username = models.CharField(verbose_name='名前',max_length=255,unique=False,blank=False, null=False)
-    gender = models.TextField(verbose_name='性別',blank=False, null=False)
-    age = models.IntegerField(verbose_name='年齢',validators=[MinValueValidator(0),MaxValueValidator(100)],blank=False, null=False)
+    gender = models.CharField(verbose_name='性別',max_length=128,blank=False, null=False)
+    birthdate = models.DateField(verbose_name='生年月日', blank=False, null=False)
     shelter = models.ForeignKey(Shelter, verbose_name='避難所選択',on_delete=models.CASCADE,default=1)
     item_name = models.CharField(verbose_name='物資一覧',max_length=255)
     quantity = models.IntegerField(verbose_name='個数')

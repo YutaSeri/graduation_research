@@ -9,6 +9,10 @@ body {
     /*background-color: #5fb1a3;*/
 }
 
+#header{
+  height: 180px;
+}
+
 .navbar-brand {
   height: 60px; /* 高さを固定 */
   display: flex;

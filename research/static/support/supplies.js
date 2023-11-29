@@ -2,7 +2,7 @@ var categories1 = {
   "医療・介護用品": ['松葉杖', '車椅子', '歩行器', '大人用おむつ'],
   "食料品": ['パン', 'カップめん', '水', 'ベビーフード'],
   "幼児用品": [ '紙おむつ', 'ミルク', 'ベビーベッド'],
-  "その他": ['衣服品', '靴', 'トイレットペーパー', '毛布', '携帯トイレ',],
+  "その他": ['衣服品', '靴', 'トイレットペーパー', '毛布', '携帯トイレ','テキスト入力'],
 };
 var categories2 = {
     "松葉杖": ['SS(121~137cm)', 'S(137~157cm)','M(157~178cm)','L(178~198cm)'],
@@ -43,15 +43,9 @@ $(document).ready(function(){
     var Category1 = $(this).val();
     var options = categories1[Category1];
     var selectElement = '<select id="category" class="form-control" name="category1">';
-    if (Category1 === "テキスト入力") {
-      $("#label-1").html('<label for="category">入力欄:</label>').show();
-      $("#category1").html('<input type="text" class="form-control" name="category1">');
-      $("#label-2").html('<label for="category">個数:</label>').show();
-      $("#category2").html('<input type="number" name="quantity" min="1"><br><br><button class="btn btn-primary" type="submit">送信</button>');
-    } else {
-      selectElement += '<option hidden>項目を選択してください &#9660</option>';
+    selectElement += '<option hidden>項目を選択してください &#9660</option>';
       $("#label-1").html('<label for="category">項目2:</label>');
-    } for(var i=0; i<options.length; i++){
+     for(var i=0; i<options.length; i++){
         selectElement += '<option value="'+options[i]+'">'+options[i]+'</option>';
       }
       selectElement += '</select>';
@@ -72,11 +66,16 @@ $(document).ready(function(){
       var Category2 = $(this).val();
       var options2 = categories2[Category2];
       var selectElement2 = '<select id="category" class="form-control" name="category2">';
-      if (options2 === undefined || options2.length === 0) {
+      if (Category2 === "テキスト入力") {
+        $("#label-2").html('<label for="category">入力欄:</label>').show();
+        $("#category2").html('<input type="text" class="form-control" name="category1">');
+        $("#label-3").html('<label for="category">個数:</label>').show();
+        $("#category3").html('<input type="number" id="quantity" name="quantity" min="1"><br><br><button class="btn btn-primary" type="submit" onclick="return validate()">送信</button>');
+      }else if (options2 === undefined || options2.length === 0) {
         $("#label-2").html('<label for="category">備考欄:</label>').show();
         $("#category2").html('<input type="text" class="form-control" name="category2">');
         $("#label-3").html('<label for="category">個数:</label>').show();
-        $("#category3").html('<input type="number" name="quantity" min="1"><br><br><button class="btn btn-primary" type="submit">送信</button>');
+        $("#category3").html('<input type="number" id="quantity" name="quantity" min="1"><br><br><button class="btn btn-primary" type="submit" onclick="return validate()">送信</button>');
       } else {
         selectElement2 += '<option hidden>項目を選択してください &#9660</option>';
         $("#label-2").html('<label for="category">項目3:</label>').show();
@@ -103,7 +102,7 @@ $(document).ready(function(){
           $("#label-3").html('<label for="category">備考欄:</label>').show();
           $("#category3").html('<input type="text" class="form-control" name="category3">');
           $("#label-4").html('<label for="category">個数:</label>').show();
-          $("#category4").html('<input type="number" name="quantity" min="1"><br><br><button class="btn btn-primary" type="submit">送信</button>');
+          $("#category4").html('<input type="number" id="quantity" name="quantity" min="1"><br><br><button class="btn btn-primary" type="submit" onclick="return validate()">送信</button>');
         } else {
           selectElement3 += '<option hidden>項目を選択してください &#9660</option>';
           $("#label-3").html('<label for="category">項目4:</label>').show();
@@ -128,7 +127,7 @@ $(document).ready(function(){
             $("#label-4").html('<label for="category">備考欄:</label>').show();
             $("#category4").html('<input type="text" class="form-control" name="category4">');
             $("#label-5").html('<label for="category">個数:</label>').show();
-            $("#category5").html('<input type="number" name="quantity" min="1"><br><br><button class="btn btn-primary" type="submit">送信</button>');
+            $("#category5").html('<input type="number" id="quantity" name="quantity" min="1"><br><br><button class="btn btn-primary" type="submit" onclick="return validate()">送信</button>');
           } else {
             selectElement4 += '<option hidden>項目を選択してください &#9660</option>';
             $("#label-4").html('<label for="category">項目5:</label>').show();
@@ -149,7 +148,7 @@ $(document).ready(function(){
             $("#label-5").html('<label for="category">備考欄:</label>').show();
             $("#category5").html('<input type="text" class="form-control" name="category5">');
             $("#label-6").html('<label for="category">個数:</label>').show();
-            $("#category6").html('<input type="number" name="quantity" min="1"><br><br><button class="btn btn-primary" type="submit">送信</button>');
+            $("#category6").html('<input type="number" id="quantity" name="quantity" min="1"><br><br><button class="btn btn-primary" type="submit" onclick="return validate()">送信</button>');
             $("#category5").html(selectElement5);
           });
         });
@@ -157,3 +156,12 @@ $(document).ready(function(){
     });
   });
 });
+function validate() {
+  var quantity = document.getElementById("quantity").value;
+  if (quantity.trim() === "") {
+    alert("数量を入力してください");
+    return false; 
+  }
+
+  return true; 
+}

@@ -4,16 +4,17 @@
 {% block title %}自治体からの連絡{% endblock %}
 {% block css %}<link rel="stylesheet" href='{% static "phone/history.css" %}'/>{% endblock %}
 
-{% block header %}自治体からの連絡{% endblock %}
+{% block header %}<h1>自治体からの連絡</h1>{% endblock %}
 {% block content %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div class="container mt-5">
-    <h1>{{ bulletin.title }}</h1>
+    <h2>{{ bulletin.title }}</h2>
     <p>投稿者: {{ bulletin.account.username }}</p>
     <p>日時: {{ bulletin.created_at }}</p>
     <div class="content">
         {{ bulletin.notice }}
     </div>
+    <p><a href="{% url 'response'%}">一覧へ</a></p>
 </div>
 {% endblock %}
   

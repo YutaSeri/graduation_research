@@ -1,3 +1,13 @@
+h1{
+  text-align: center;  
+  height:60px;
+  line-height:60px; 
+} 
+
+p{
+  text-align: center;
+}
+
 .form-container {
   text-align: center;
 }

@@ -1,3 +1,13 @@
+h2{
+    text-align: center;  
+    height:60px;
+    line-height:60px; 
+  } 
+  
+  p{
+    text-align: center;
+  }
+
 .table th {
     font-size: 13px; /* 任意のサイズを指定 */
 }

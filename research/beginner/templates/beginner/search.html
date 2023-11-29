@@ -15,7 +15,15 @@
   <h1>名前の入力</h1>
   <div class="container-fluid search">
     <form class="d-flex" role="search" method="GET" action="{% url 'search_results' %}" onsubmit="return validateForm()">
-      <input class="form-control me-2" type="search" placeholder="ご自身のお名前を入力してください" aria-label="Search" name="q" id="q" value="{{ username }}">
+        <div class="form-group">
+          <input class="form-control me-2" type="search" placeholder="ご自身のお名前を入力してください" aria-label="Search" name="q" id="q" value="{{ username }}">
+          
+          <div></div>
+          <br>
+        
+          <label for="birthdate" class="form-label">生年月日を入力してください</label>
+          <input class="form-control me-2" type="date" name="birthdate" id="birthdate" value="{{ birthdate }}">
+      </div>
       <button class="btn btn-outline-success" type="submit">検索</button>
     </form>
   </div> 

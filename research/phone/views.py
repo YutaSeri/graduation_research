@@ -51,12 +51,6 @@ def login_view(request):
     return render(request, 'phone/login.html', param)
 
 @login_required
-def logout_view(request):
-    logout(request)
-
-    return render(request, 'phone/logout.html')
-
-@login_required
 def user_detail_view(request):
     context = {
         'user': request.user

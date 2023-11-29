@@ -3,7 +3,7 @@
 {% block title %}支援物資要望フォーム{% endblock %}
 {% block css %}<link rel="stylesheet" href='{% static "phone/supplies.css" %}'/>{% endblock %}
 
-{% block header %}支援物資要望フォーム{% endblock %}
+{% block header %}<h1>支援物資要望フォーム</h1>{% endblock %}
 {% block content %}
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="{% static 'support/supplies.js' %}"></script>
@@ -18,7 +18,6 @@
           <option value="食料品">食料品</option>
           <option value="幼児用品">幼児用品</option>
           <option value="その他">その他</option>
-          <option value="テキスト入力">テキスト入力</option>
         </select>
       </div>
       <br>

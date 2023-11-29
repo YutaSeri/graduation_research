@@ -15,9 +15,6 @@
     <header>
       <nav class="navbar bg-primary" data-bs-theme="dark">
          {% block header %}{% endblock %}
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
       </nav>
       <div class="hamburger-menu">
         <input type="checkbox" id="menu-btn-check">
@@ -42,7 +39,7 @@
               </a>
             </li>
             <li class="list">
-              <a href="{% url 'logout'%}">
+              <a href="{% url 'login'%}">
                 <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
                 <span class="title">サインアウト</span>
               </a>

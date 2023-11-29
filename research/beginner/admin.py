@@ -3,7 +3,7 @@ from .models import beginner_account_and_item,biginner_account_and_Other_request
 from phone.models import Shelter
 
 class Support_ItemAdmin(admin.ModelAdmin):
-    list_display = ['username','gender', 'age','item_name','quantity','created_at', 'arrival_date','get_shelter_name',]
+    list_display = ['username','gender', 'birthdate','item_name','quantity','created_at', 'arrival_date','get_shelter_name',]
     list_filter = ['username','shelter__shelter_name', 'created_at','arrival_date']
     def get_shelter_name(self, obj):
         return obj.shelter.shelter_name

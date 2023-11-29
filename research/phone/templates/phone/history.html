@@ -4,16 +4,16 @@
 {% block title %}支援物資要請履歴{% endblock %}
 {% block css %}<link rel="stylesheet" href='{% static "phone/history.css" %}'/>{% endblock %}
 
-{% block header %}支援物資要請履歴{% endblock %}
+{% block header %}<h1>支援物資要請履歴</h1>{% endblock %}
 {% block content %}
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <table class="table table-bordered">
-    <thead>
+  <table class="table table-bordered table-striped">
+    <thead class="table-light">
       <tr>
-        <th><アイテム名></th>
-        <th><個数></th>
-        <th><申請日></th>
-        <th><到着予定日></th>
+        <th>アイテム名</th>
+        <th>個数</th>
+        <th>申請日</th>
+        <th>到着予定日</th>
       </tr>
     </thead>
     <tbody>

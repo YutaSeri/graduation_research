@@ -4,6 +4,7 @@ from .models import beginner_account_and_item
 from .models import biginner_account_and_Other_requests
 from phone.models import Shelter
 import time
+from django.db.models import Q
 
 def home_view(request):
     return render(request, 'beginner/home.html')
@@ -43,8 +44,11 @@ def requests2_view(request):
 
 def search_results_view(request):
     username = request.GET.get('q', '')
-    results = beginner_account_and_item.objects.filter(username__icontains=username)
-    return render(request, 'beginner/search_results.html', {'results': results, 'username': username})
+    birthdate = request.GET.get('birthdate', '')
+    results = beginner_account_and_item.objects.filter(
+        Q(username=username) & Q(birthdate=birthdate)
+    )
+    return render(request, 'beginner/search_results.html', {'results': results, 'username': username, 'birthdate': birthdate})
 
 def search_view(request):
     return render(request, 'beginner/search.html')
@@ -52,19 +56,19 @@ def search_view(request):
 def supplie1_view(request):
     username = ''
     gender = ''
-    age = ''
+    birthdate = ''
     shelter_id = ''
     shelters = Shelter.objects.all()
     if request.method == 'POST':
         username = request.POST.get('username')
         gender = request.POST.get('gender')
-        age = request.POST.get('age')
+        birthdate = request.POST.get('birthdate')
         shelter_id = request.POST.get('shelter')
         item_name = ''
-        if username and gender and age and shelter_id:
+        if username and gender and birthdate and shelter_id:
             request.session['username'] = username
             request.session['gender'] = gender
-            request.session['age'] = age
+            request.session['birthdate'] = birthdate
             request.session['shelter_id'] = shelter_id
             return redirect('supplie2')
             
@@ -252,19 +256,19 @@ def confirm_view(request):
 
         username = request.session.get('username')
         gender = request.session.get('gender')
-        age = request.session.get('age')
+        birthdate = request.session.get('birthdate')
         shelter_id = request.session.get('shelter_id')
         item_name = ' '.join(categories)
         quantity = request.POST.get('quantity')
         
         
         
-        if username and gender and age and shelter_id and item_name and quantity:
+        if username and gender and birthdate and shelter_id and item_name and quantity:
             shelter = Shelter.objects.get(pk=shelter_id)
-            request_obj = beginner_account_and_item.objects.create(username=username, gender=gender, age=age, shelter=shelter,item_name=item_name,quantity=quantity)
+            request_obj = beginner_account_and_item.objects.create(username=username, gender=gender, birthdate=birthdate, shelter=shelter,item_name=item_name,quantity=quantity)
             del request.session['username']
             del request.session['gender']
-            del request.session['age']
+            del request.session['birthdate']
             del request.session['shelter_id']
             return redirect('success')
             

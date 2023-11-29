@@ -5,8 +5,8 @@ from phone.models import Shelter
 
 class Bulletin(models.Model):
     title = models.CharField(verbose_name='タイトル',max_length=30)
-    notice = models.CharField(verbose_name='お知らせ内容',max_length=300)
-    created_at = models.DateTimeField(auto_now_add=True)
+    notice = models.TextField(verbose_name='お知らせ内容',max_length=300)
+    created_at = models.DateTimeField(verbose_name='投稿日時',auto_now_add=True)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
 
     class Meta:
