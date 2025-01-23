@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>支援物資要請フォーム①</title>
+    <link rel="stylesheet" href='{% static "beginner/supplie4.css" %}'/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  
+  </head>
+
+<body class="d-flex align-items-center py-4 bg-body-tertiary">
+    <header>
+        <h3>支援物資要請フォーム</h3>
+    </header>
+    <form class="text-center" method="post">
+      {% csrf_token %}
+      <div class="square-list">
+        <div class="square">
+          <input id="other-1" type="radio" name="category1" value="運動靴">
+          <label for="other-1">運動靴</label>
+        </div>
+        <div class="square">
+          <input id="other-2" type="radio" name="category1" value="長靴">
+          <label for="other-2">長靴</label>
+        </div>
+      </div>
+      <div class="container-fluid">
+          <label for="other1" class="form-label">サイズ入力</label>
+          <select id="other1" name="category2" class="form-select" required>
+            <option value="15cm">15cm</option>
+            <option value="16cm">16cm</option>
+            <option value="17cm">17cm</option>
+            <option value="18cm">18cm</option>
+            <option value="19cm">19cm</option>
+            <option value="20cm">20cm</option>
+            <option value="21cm">21cm</option>
+            <option value="22cm">22cm</option>
+            <option value="23cm">23cm</option>
+            <option value="23.5cm">23.5cm</option>
+            <option value="24cm">24cm</option>
+            <option value="24.5cm">24.5cm</option>
+            <option value="25cm">25cm</option>
+            <option value="25.5cm">25.5cm</option>
+            <option value="26cm">26cm</option>
+            <option value="26.5cm">26.5cm</option>
+            <option value="27cm">27cm</option>
+            <option value="27.5cm">27.5cm</option>
+            <option value="28cm">28cm</option>
+            <option value="28.5cm">28.5cm</option>
+            <option value="29cm">29cm</option>
+            <option value="29.5cm">29.5cm</option>
+            <option value="30cm">30cm</option>
+          </select>  
+        </div>
+        <br><button class="btn btn-primary" type="submit" name="submitBtn">次へ</button>
+    </form>
+    <br><a href="{% url 'home' %}"><button class="btn btn-success">ホーム画面に戻る</button></a>
+  </body>
+</html>

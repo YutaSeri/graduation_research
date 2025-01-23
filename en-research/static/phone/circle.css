@@ -1,0 +1,37 @@
+h1{
+    text-align: center;  
+    height:60px;
+    line-height:60px; 
+} 
+
+p{
+    text-align: center;
+}
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ec4646;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  color: #fff;
+  font-size: 20px;
+}
+.circle-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+  
+.circle-list li {
+    margin: 10px;
+}
+
+.circle-list .icon img{
+    width: 150px; /* 画像の幅を調整 */
+    height: 150px; /* 画像の高さを調整 */
+    object-fit: cover;
+  }

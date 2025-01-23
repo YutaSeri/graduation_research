@@ -1,0 +1,17 @@
+h1{
+    text-align: center;  
+    height:60px;
+    line-height:60px; 
+  } 
+  
+  p{
+    text-align: center;
+  }
+
+.form-control {
+    appearance: none; /* ブラウザのデフォルトスタイルを無効化 */
+    background-image: url('path_to_your_dropdown_icon.png'); /* ドロップダウンアイコンのパスを指定 */
+    background-position: right center; /* ドロップダウンアイコンの位置を右端中央に指定 */
+    background-repeat: no-repeat; /* ドロップダウンアイコンの繰り返しを無効化 */
+    padding-right: 20px; /* ドロップダウンアイコンとテキストの間隔を調整 */
+}

@@ -1,0 +1,42 @@
+{% extends "phone/base.html" %}
+{% load static %}
+{% block title %}支援物資要望フォーム{% endblock %}
+{% block css %}<link rel="stylesheet" href='{% static "phone/supplies.css" %}'/>{% endblock %}
+
+{% block header %}<h3>Rationed Goods<br> Request Form</h3>{% endblock %}
+{% block content %}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="{% static 'support/supplies.js' %}"></script>
+  <br>
+  <form id="supportForm" method="post" action="{% url 'supplies' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="category">Item 1:</label>
+        <select id="category" class="form-control" name="category">
+          <option hidden>Please Select Item &#9660</option>
+          <option value="Medical/Nursing Supplies">Medical/Nursing Supplies</option>
+          <option value="食料品">食料品</option>
+          <option value="幼児用品">幼児用品</option>
+          <option value="その他">その他</option>
+        </select>
+      </div>
+      <br>
+      <div id="label-1"></div>
+      <div id="category1"></div>
+      <br>
+      <div id="label-2"></div>
+      <div id="category2"></div>
+      <br>
+      <div id="label-3"></div>
+      <div id="category3"></div>
+      <br>
+      <div id="label-4"></div>
+      <div id="category4"></div>
+      <br>  
+      <div id="label-5"></div>
+      <div id="category5"></div>
+      <br>  
+      <div id="label-6"></div>
+      <div id="category6"></div>
+  </form>
+{% endblock %}

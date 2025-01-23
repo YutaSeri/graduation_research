@@ -46,7 +46,7 @@
                     <input type="date" id="birthdate" name="birthdate" class="form-control" required>  
                 </div>
                 <div class="container-fluid">
-                    <label for="shelter" class="form-label">避難所選択</label>
+                    <label for="shelter" class="form-label">避難所</label>
                     <select id="shelter" name="shelter" class="form-select" required>
                         {% for shelter in shelters %}
                             <option value="{{ shelter.id }}">{{ shelter.shelter_name }}</option>

@@ -4,6 +4,7 @@ from django.core.validators import EmailValidator,MinValueValidator, MaxValueVal
 from django.core.mail import send_mail
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
 
 
 
@@ -15,6 +16,7 @@ class Shelter(models.Model):
 
     class Meta:
         db_table = 'Shelter' 
+        verbose_name = "避難所"
         verbose_name_plural = _("避難所登録")
 
     def __str__(self):
@@ -61,9 +63,6 @@ class Account(AbstractBaseUser,PermissionsMixin):
     
     def get_full_name(self):
      return self.username.strip()
-
-
-
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.email], **kwargs)

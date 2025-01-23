@@ -1,0 +1,17 @@
+{% extends "phone/base.html" %}
+{% load static %}
+
+{% block title %}その他の要望フォーム{% endblock %}
+{% block css %}<link rel="stylesheet"  href='{% static "phone/requests.css" %}'/>{% endblock %}
+{% block header %}<h1>Other Request Form</h1>{% endblock %}
+{% block content %}
+<br>
+<div class="form-container">
+  <form method="post">
+      {% csrf_token %}
+      <textarea rows="8"cols="35" name="requests" placeholder="Please enter any problems or other requests 
+      you have at the evacuation center."></textarea>
+      <p><button class="btn btn-primary" type="submit">Send</button><br></p>
+  </form>
+</div>
+{% endblock %}

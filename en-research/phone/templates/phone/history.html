@@ -1,0 +1,26 @@
+{% extends "phone/base.html" %}
+{% load static %}
+
+{% block title %}支援物資要請履歴{% endblock %}
+{% block css %}<link rel="stylesheet" href='{% static "phone/history.css" %}'/>{% endblock %}
+
+{% block header %}<h1>Rationed Goods <br>Request History Screen</h1>{% endblock %}
+{% block content %}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {% for item in history %}
+      <div class="item-box">
+        <div>Item name: {{ item.item_name }}</div>
+        <div>Quantity: {{ item.quantity }}</div>
+        <div>Application date: {{ item.created_at }}</div>
+        <div>Estimated arrival date: 
+          {% if item.arrival_date %}
+            {{ item.arrival_date }}
+          {% else %}
+            undecided
+          {% endif %}
+        </div>
+      </div>
+    {% empty %}
+  <div>サポートアイテムはありません。</div>
+{% endfor %}
+{% endblock %}
